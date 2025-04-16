@@ -28,12 +28,15 @@ class NavigationService {
 
   void showSnackbar(String message) {
     final context = navigatorKey.currentContext!;
+    
     ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+
     final snackbarWidget = SnackBar(
         content: Text(
       message,
       style: const TextStyle(color: Colors.white),
     ));
+    
     ScaffoldMessenger.of(context).showSnackBar(
       snackbarWidget,
     );
