@@ -8,9 +8,32 @@ import 'package:movies_app_provider/view_model/movies_provider.dart';
 import 'package:movies_app_provider/widgets/my_error_widget.dart';
 import 'package:provider/provider.dart';
 
-
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
+
+  // Cleaner style 
+
+  // Future<void> _loadInitialData(BuildContext context) async {
+  //   if (!context.mounted) return;
+
+  //   final favoritesProvider = Provider.of<FavoritesProvider>(
+  //     context,
+  //     listen: false,
+  //   );
+  //   final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
+
+  //   try {
+  //     await Future.wait([
+  //       favoritesProvider.loadFavorites(),
+  //       moviesProvider.getMovies(),
+  //     ]);
+  //   } catch (e) {
+  //     // Handle any errors that occurred during loading
+  //     // print('Error loading initial data: $e');
+  //     // You might want to rethrow the error or handle it in some way
+  //     rethrow;
+  //   }
+  // }
 
   Future<void> _loadInitialData(BuildContext context) async {
     await Future.microtask(() async {
@@ -31,6 +54,8 @@ class SplashScreen extends StatelessWidget {
     // });
   }
 
+  // Many ways to improve this for error handling when Futures fail and what you 
+  // will display.
   @override
   Widget build(BuildContext context) {
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
@@ -42,14 +67,12 @@ class SplashScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator.adaptive();
           } else if (snapshot.hasError) {
-
             if (moviesProvider.genresList.isNotEmpty) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 getIt<NavigationService>().navigateReplace(
                   const MoviesScreen(),
                 );
               });
-
             }
             return Provider.of<MoviesProvider>(context).isLoading
                 ? const Center(child: CircularProgressIndicator.adaptive())
