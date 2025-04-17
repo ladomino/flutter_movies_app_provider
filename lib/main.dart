@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:movies_app_provider/screens/movies_screen.dart';
 import 'package:movies_app_provider/screens/splash_screen.dart';
 import 'package:movies_app_provider/service/init_getit.dart';
 import 'package:movies_app_provider/service/navigation_service.dart';

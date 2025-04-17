@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:movies_app_provider/constants/my_app_constants.dart';
 import 'package:movies_app_provider/constants/my_app_icons.dart';
 import 'package:movies_app_provider/models/movies_model.dart';
 import 'package:movies_app_provider/screens/movie_details.dart';
